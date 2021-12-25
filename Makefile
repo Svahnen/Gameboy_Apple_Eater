@@ -4,7 +4,7 @@
 
 # If you move this project you can change the directory 
 # to match your GBDK root directory (ex: GBDK_HOME = "C:/GBDK/"
-GBDK_HOME = /home/svahnen/Projects/gbdk/
+GBDK_HOME = ~/Projects/gbdk/
 
 LCC = $(GBDK_HOME)bin/lcc 
 
@@ -12,7 +12,7 @@ LCC = $(GBDK_HOME)bin/lcc
 # LCC = $(LCC) -debug
 
 # You can set the name of the .gb ROM file here
-PROJECTNAME    = AppleHunter
+PROJECTNAME    = AppleEater
 
 BINS	    = $(PROJECTNAME).gb
 CSOURCES   := $(wildcard *.c)
