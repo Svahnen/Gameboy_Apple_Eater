@@ -13,8 +13,6 @@
 	.globl _set_sprite_data
 	.globl _joypad
 	.globl _delay
-	.globl _apple
-	.globl _smiler
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -26,10 +24,6 @@
 ; ram data
 ;--------------------------------------------------------
 	.area _INITIALIZED
-_smiler::
-	.ds 48
-_apple::
-	.ds 32
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -71,12 +65,12 @@ _main::
 	push	hl
 	call	_set_sprite_data
 	add	sp, #4
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1314: shadow_OAM[nb].tile=tile;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1326: shadow_OAM[nb].tile=tile;
 	ld	hl, #(_shadow_OAM + 2)
 	ld	(hl), #0x00
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1387: OAM_item_t * itm = &shadow_OAM[nb];
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	hl, #_shadow_OAM
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1388: itm->y=y, itm->x=x;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
 	ld	a, #0x14
 	ld	(hl+), a
 	ld	(hl), #0x14
@@ -87,12 +81,12 @@ _main::
 	push	hl
 	call	_set_sprite_data
 	add	sp, #4
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1314: shadow_OAM[nb].tile=tile;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1326: shadow_OAM[nb].tile=tile;
 	ld	hl, #(_shadow_OAM + 10)
 	ld	(hl), #0x02
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1387: OAM_item_t * itm = &shadow_OAM[nb];
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	hl, #(_shadow_OAM + 8)
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1388: itm->y=y, itm->x=x;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
 	ld	a, #0x64
 	ld	(hl+), a
 	ld	(hl), #0x64
@@ -143,9 +137,9 @@ _main::
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1387: OAM_item_t * itm = &shadow_OAM[nb];
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	hl, #_shadow_OAM
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1388: itm->y=y, itm->x=x;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
 	ld	a, e
 	ld	(hl+), a
 	ld	(hl), d
@@ -180,9 +174,9 @@ _main::
 	ld	a, (hl+)
 	ld	d, a
 	ld	e, (hl)
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1387: OAM_item_t * itm = &shadow_OAM[nb];
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	hl, #_shadow_OAM
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1388: itm->y=y, itm->x=x;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
 	ld	a, d
 	ld	(hl+), a
 	ld	(hl), e
@@ -205,8 +199,8 @@ _main::
 	adc	a, #0xff
 	ld	b, a
 ;main.c:44: move_sprite(0, characterX, characterY);
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1387: OAM_item_t * itm = &shadow_OAM[nb];
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1388: itm->y=y, itm->x=x;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
 	ld	a, c
 	ld	hl, #_shadow_OAM
 	ld	(hl+), a
@@ -228,8 +222,8 @@ _main::
 	ld	c, l
 	ld	b, h
 ;main.c:49: move_sprite(0, characterX, characterY);
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1387: OAM_item_t * itm = &shadow_OAM[nb];
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1388: itm->y=y, itm->x=x;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
 	ld	a, c
 	ld	hl, #_shadow_OAM
 	ld	(hl+), a
@@ -253,7 +247,7 @@ _main::
 	sub	a, #0x64
 	or	a, b
 	jp	NZ,00110$
-;/home/svahnen/Projects/gbdk/include/gb/gb.h:1314: shadow_OAM[nb].tile=tile;
+;/home/svahnen/Projects/gbdk/include/gb/gb.h:1326: shadow_OAM[nb].tile=tile;
 	ld	hl, #(_shadow_OAM + 2)
 	ld	(hl), #0x01
 	ld	hl, #(_shadow_OAM + 10)
@@ -272,86 +266,4 @@ ___str_0:
 	.db 0x00
 	.area _CODE
 	.area _INITIALIZER
-__xinit__smiler:
-	.db #0x7e	; 126
-	.db #0x7e	; 126
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0xa5	; 165
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0xbd	; 189
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0x7e	; 126
-	.db #0x7e	; 126
-	.db #0x7e	; 126
-	.db #0x7e	; 126
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0xa5	; 165
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0xa5	; 165
-	.db #0xff	; 255
-	.db #0x99	; 153
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0x7e	; 126
-	.db #0x7e	; 126
-	.db #0x7e	; 126
-	.db #0x7e	; 126
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0xff	; 255
-	.db #0x81	; 129
-	.db #0x7e	; 126
-	.db #0x7e	; 126
-__xinit__apple:
-	.db #0x18	; 24
-	.db #0x18	; 24
-	.db #0x08	; 8
-	.db #0x08	; 8
-	.db #0x08	; 8
-	.db #0x3c	; 60
-	.db #0x00	; 0
-	.db #0x7e	; 126
-	.db #0x00	; 0
-	.db #0x7e	; 126
-	.db #0x10	; 16
-	.db #0x6e	; 110	'n'
-	.db #0x00	; 0
-	.db #0x7e	; 126
-	.db #0x00	; 0
-	.db #0x3c	; 60
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
-	.db #0x00	; 0
 	.area _CABS (ABS)
