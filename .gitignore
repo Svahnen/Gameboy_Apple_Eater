@@ -53,7 +53,8 @@ Mkfile.old
 dkms.conf
 
 # VS Code Settings
-.vscode
+#.vscode
+.vscode/*.log
 
 # Test files
 *test*
